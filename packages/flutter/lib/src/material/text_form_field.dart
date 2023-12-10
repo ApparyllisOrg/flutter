@@ -110,6 +110,9 @@ class TextFormField extends FormField<String> {
     super.key,
     this.groupId = EditableText,
     this.controller,
+    // EDIT:Apparyllis ~ Start ~ Add field key
+    this.fieldKey,
+    // EDIT:Apparyllis ~ End ~ Add field key
     String? initialValue,
     FocusNode? focusNode,
     super.forceErrorText,
@@ -220,6 +223,9 @@ class TextFormField extends FormField<String> {
              bucket: field.bucket,
              child: TextField(
                groupId: groupId,
+               // EDIT:Apparyllis ~ Start ~ Add field key
+               key: fieldKey,
+               // EDIT:Apparyllis ~ End ~ Add field key
                restorationId: restorationId,
                controller: state._effectiveController,
                focusNode: focusNode,
@@ -318,6 +324,10 @@ class TextFormField extends FormField<String> {
   ) {
     return AdaptiveTextSelectionToolbar.editableText(editableTextState: editableTextState);
   }
+
+// EDIT:Apparyllis ~ Start ~ Add field key
+  final GlobalKey<TextFieldState>? fieldKey;
+// EDIT:Apparyllis ~ End ~ Add field key
 
   @override
   FormFieldState<String> createState() => _TextFormFieldState();

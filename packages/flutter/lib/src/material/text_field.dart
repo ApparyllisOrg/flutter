@@ -56,11 +56,15 @@ typedef InputCounterWidgetBuilder =
     });
 
 class _TextFieldSelectionGestureDetectorBuilder extends TextSelectionGestureDetectorBuilder {
-  _TextFieldSelectionGestureDetectorBuilder({required _TextFieldState state})
+// EDIT:Apparyllis ~ Start ~ Make class public
+  _TextFieldSelectionGestureDetectorBuilder({required TextFieldState state})
+// EDIT:Apparyllis ~ End ~ Make class public
     : _state = state,
       super(delegate: state);
 
-  final _TextFieldState _state;
+// EDIT:Apparyllis ~ Start ~ Make class public
+  final TextFieldState _state;
+// EDIT:Apparyllis ~ Start ~ Make class public
 
   @override
   bool get onUserTapAlwaysCalled => _state.widget.onTapAlwaysCalled;
@@ -920,8 +924,10 @@ class TextField extends StatefulWidget {
     );
   }
 
+  // EDIT:Apparyllis ~ Start ~ Make class public
   @override
-  State<TextField> createState() => _TextFieldState();
+  State<TextField> createState() => TextFieldState();
+  // EDIT:Apparyllis ~ End ~ Make class public
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -1089,7 +1095,9 @@ class TextField extends StatefulWidget {
   }
 }
 
-class _TextFieldState extends State<TextField>
+// EDIT:Apparyllis ~ Start ~ Make class public
+class TextFieldState extends State<TextField>
+// EDIT:Apparyllis ~ End ~ Make class public
     with RestorationMixin
     implements TextSelectionGestureDetectorBuilderDelegate, AutofillClient {
   RestorableTextEditingController? _controller;
