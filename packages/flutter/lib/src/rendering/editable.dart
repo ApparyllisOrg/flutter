@@ -512,6 +512,24 @@ class RenderEditable extends RenderBox with RelayoutWhenSystemFontsChangeMixin, 
     );
   }
 
+  Rect? _lastCaretRect;
+
+  // EDIT:Apparyllis ~ Start ~ Expose _lastCaretRect
+  Rect? getLastCaretRect() => _lastCaretRect;
+  // EDIT:Apparyllis ~ End ~ Expose _lastCaretRect
+
+  // TODO(LongCatIsLooong): currently EditableText uses this callback to keep
+  // the text field visible. But we don't always paint the caret, for example
+  // when the selection is not collapsed.
+  /// Called during the paint phase when the caret location changes.
+  CaretChangedHandler? onCaretChanged;
+  void _onCaretChanged(Rect caretRect) {
+    if (_lastCaretRect != caretRect) {
+      onCaretChanged?.call(caretRect);
+    }
+    _lastCaretRect = onCaretChanged == null ? null : caretRect;
+  }
+
   /// Whether the [handleEvent] will propagate pointer events to selection
   /// handlers.
   ///
