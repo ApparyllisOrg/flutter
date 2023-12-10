@@ -46,11 +46,15 @@ typedef InputCounterWidgetBuilder = Widget? Function(
 
 class _TextFieldSelectionGestureDetectorBuilder extends TextSelectionGestureDetectorBuilder {
   _TextFieldSelectionGestureDetectorBuilder({
-    required _TextFieldState state,
+    // EDIT:Apparyllis ~ Start ~ Make class public
+    required TextFieldState state,
+    // EDIT:Apparyllis ~ Start ~ Make class public
   }) : _state = state,
        super(delegate: state);
 
-  final _TextFieldState _state;
+// EDIT:Apparyllis ~ Start ~ Make class public
+  final TextFieldState _state;
+// EDIT:Apparyllis ~ Start ~ Make class public
 
   @override
   void onForcePressStart(ForcePressDetails details) {
@@ -852,8 +856,10 @@ class TextField extends StatefulWidget {
     );
   }
 
+  // EDIT:Apparyllis ~ Start ~ Make class public
   @override
-  State<TextField> createState() => _TextFieldState();
+  State<TextField> createState() => TextFieldState();
+  // EDIT:Apparyllis ~ End ~ Make class public
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -900,8 +906,9 @@ class TextField extends StatefulWidget {
     properties.add(DiagnosticsProperty<List<String>>('contentCommitMimeTypes', contentInsertionConfiguration?.allowedMimeTypes ?? const <String>[], defaultValue: contentInsertionConfiguration == null ? const <String>[] : kDefaultContentInsertionMimeTypes));
   }
 }
-
-class _TextFieldState extends State<TextField> with RestorationMixin implements TextSelectionGestureDetectorBuilderDelegate, AutofillClient {
+// EDIT:Apparyllis ~ Start ~ Make class public
+class TextFieldState extends State<TextField> with RestorationMixin implements TextSelectionGestureDetectorBuilderDelegate, AutofillClient {
+// EDIT:Apparyllis ~ End ~ Make class public
   RestorableTextEditingController? _controller;
   TextEditingController get _effectiveController => widget.controller ?? _controller!.value;
 
