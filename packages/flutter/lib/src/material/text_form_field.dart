@@ -110,6 +110,9 @@ class TextFormField extends FormField<String> {
     super.key,
     this.groupId = EditableText,
     this.controller,
+    // EDIT:Apparyllis ~ Start ~ Add field key
+    this.fieldKey,
+    // EDIT:Apparyllis ~ End ~ Add field key
     String? initialValue,
     FocusNode? focusNode,
     super.forceErrorText,
@@ -213,6 +216,9 @@ class TextFormField extends FormField<String> {
              bucket: field.bucket,
              child: TextField(
                groupId: groupId,
+               // EDIT:Apparyllis ~ Start ~ Add field key
+               key: fieldKey,
+               // EDIT:Apparyllis ~ End ~ Add field key
                restorationId: restorationId,
                controller: state._effectiveController,
                focusNode: focusNode,
@@ -297,6 +303,10 @@ class TextFormField extends FormField<String> {
   /// value: when they have inserted or deleted text or reset the form.
   /// {@endtemplate}
   final ValueChanged<String>? onChanged;
+
+  // EDIT:Apparyllis ~ Start ~ Add field key
+  final GlobalKey<TextFieldState>? fieldKey;
+  // EDIT:Apparyllis ~ End ~ Add field key
 
   static Widget _defaultContextMenuBuilder(BuildContext context, EditableTextState editableTextState) {
     return AdaptiveTextSelectionToolbar.editableText(
